@@ -1,12 +1,13 @@
 ﻿using System.Net.Mime;
 using System.Text;
 using System.Text.Json;
+using System.Text.Unicode;
 
 namespace OpenTelemetry.Exporter.AzureMonitorLogs.Internal
 {
     internal static class HttpClientHelperExtension
     {
-        public static async Task<TResponse> PostWithJsonAsync<TResponse>(
+        public static async Task PostWithJsonAsync(
             this HttpClient httpClient,
             string uri,
             object body,
@@ -25,7 +26,6 @@ namespace OpenTelemetry.Exporter.AzureMonitorLogs.Internal
                 response = await httpClient.SendAsync(request);
 
                 await ValidateResponseAsync(uri, response);
-                return await response.StreamWithJsonAsync<TResponse>();
             }
             finally
             {
@@ -41,10 +41,7 @@ namespace OpenTelemetry.Exporter.AzureMonitorLogs.Internal
                 return null!;
             }
 
-            return new StringContent(
-                JsonSerializer.Serialize(body),
-                Encoding.UTF8,
-                MediaTypeNames.Application.Json);
+            return new StringContent(JsonSerializer.Serialize(body), Encoding.UTF8, "application/json");
         }
 
         private static async Task ValidateResponseAsync(string uri, HttpResponseMessage response)

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using OpenTelemetry.Exporter.AzureMonitorLogs.DataModel;
 
 namespace OpenTelemetry.Exporter.AzureMonitorLogs
 {
     internal interface IAzureMonitorLogsServiceClient : IDisposable
     {
+        Task PostDataCollectorRecordsAsync(IEnumerable<Record> records);
     }
 }

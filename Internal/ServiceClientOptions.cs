@@ -6,5 +6,6 @@ namespace OpenTelemetry.Exporter.AzureMonitorLogs.Internal
     {
         public Uri? EndPoint { get; set; }
         public string AuthorizationSecret { get; set; }
+        public string AuthorizationSignature { get; set; }
     }
 }

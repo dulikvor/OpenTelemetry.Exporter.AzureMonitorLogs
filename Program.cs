@@ -7,11 +7,19 @@ class TestClass
 {
     static void Main(string[] args)
     {
+        GenerateInstrumentation();
+        Thread.Sleep(TimeSpan.FromMinutes(5));
+    }
+
+    private static void GenerateInstrumentation()
+    {
         using var tracerProvider = Sdk.CreateTracerProviderBuilder()
                     .AddSource("Samples.SampleClient", "Samples.SampleServer")
                     .AddAzureMonitorLogsExporter(options =>
                     {
-                        options.EndPoint = new Uri("https://127.0.0.1:8080");
+                        options.WorkspaceId = Guid.Empty;//Guid.Parse(some workspace immutable id);
+                        options.SharedKey = "";//Workspace shared key.
+                        options.TableName = "BabyShark";
                     })
                     .Build();
         {

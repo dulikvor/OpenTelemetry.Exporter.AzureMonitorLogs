@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
+using OpenTelemetry.Exporter.AzureMonitorLogs.DataModel;
 using OpenTelemetry.Exporter.AzureMonitorLogs.Internal;
 
 namespace OpenTelemetry.Exporter.AzureMonitorLogs
@@ -13,12 +14,14 @@ namespace OpenTelemetry.Exporter.AzureMonitorLogs
         {
             _services = new ServiceCollection();
             _services.AddAzureLogAnayticsServiceHttpClient();
+            _services.AddTraceModel();
 
             var serviceClientOptions = new AzureMonitorLogsServiceClientOptions()
             {
                 DestinationTable = options.TableName,
                 AuthorizationSecret = options.SharedKey,
-                EndPoint = options.EndPoint
+                AuthorizationSignature = options.WorkspaceId + ":{0}",
+                EndPoint = options.EndPoint ?? new Uri($"https://{options.WorkspaceId}.ods.opinsights.azure.com")
             };
             _services.TryAddSingleton<IOptions<AzureMonitorLogsServiceClientOptions>>(sp => new OptionsWrapper<AzureMonitorLogsServiceClientOptions>(serviceClientOptions));
         }
