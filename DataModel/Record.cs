@@ -45,11 +45,11 @@ namespace OpenTelemetry.Exporter.AzureMonitorLogs.DataModel
             record.AddValue(TraceTableModelExtensionHelper.ParentIdProperty, ColumnType.String, activity.ParentSpanId.ToString());
             record.AddValue(TraceTableModelExtensionHelper.StartTimeProperty, ColumnType.DateTime, activity.StartTimeUtc);
             record.AddValue(TraceTableModelExtensionHelper.EndTimeProperty, ColumnType.DateTime, activity.StartTimeUtc + activity.Duration);
-            /*activity.TagObjects.All(tag =>
+            activity.TagObjects.All(tag =>
             {
                 record.AddValue(TraceTableModelExtensionHelper.AttributesProperty, ColumnType.Dynamic, tag.Key, tag.Value);
                 return true;
-            });*/
+            });
 
             return record;
         }

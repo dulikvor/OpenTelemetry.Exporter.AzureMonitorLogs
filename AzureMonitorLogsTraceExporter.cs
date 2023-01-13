@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Http;
 using OpenTelemetry.Exporter.AzureMonitorLogs.DataModel;
+using OpenTelemetry.Exporter.AzureMonitorLogs.Internal;
 using System.Diagnostics;
 
 namespace OpenTelemetry.Exporter.AzureMonitorLogs
@@ -37,8 +38,9 @@ namespace OpenTelemetry.Exporter.AzureMonitorLogs
                 task.Wait();
                 return ExportResult.Success;
             }
-            catch(Exception) //Making sure process will not abort on failure
+            catch(Exception exception) //Making sure process will not abort on failure
             {
+                AzureMonitorLogsEventSource.Source.SendingRecordsToDataGatewayFailed(exception.Message);
                 return ExportResult.Failure;
             }
         }

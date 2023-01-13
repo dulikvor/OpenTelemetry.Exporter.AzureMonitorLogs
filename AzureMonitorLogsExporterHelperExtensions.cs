@@ -19,14 +19,6 @@ namespace OpenTelemetry.Exporter.AzureMonitorLogs
                 options.BatchExportProcessorOptions.ScheduledDelayMilliseconds,
                 options.BatchExportProcessorOptions.ExporterTimeoutMilliseconds,
                 options.BatchExportProcessorOptions.MaxExportBatchSize));
-
-            /*if (builder is IDeferredTracerProviderBuilder deferredTracerProviderBuilder)
-            {
-                deferredTracerProviderBuilder.Configure((sp, tpb) =>
-                {
-                    
-                });
-            }*/
         }
     }
 }

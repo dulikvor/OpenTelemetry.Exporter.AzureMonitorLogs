@@ -11,16 +11,16 @@ namespace OpenTelemetry.Exporter.AzureMonitorLogs
             BatchExportProcessorOptions = new();
         }
 
-        [Option("sharedKey", HelpText = "Please specify shared key required to authenticate", Required = true)]
+        [Option("sharedkey", HelpText = "Please specify shared key required to authenticate", Required = true)]
         public string SharedKey { get; set; }
 
-        [Option("tableName", HelpText = "Please specify destination table", Required = true)]
+        [Option("tablename", HelpText = "Please specify destination table", Required = true)]
         public string TableName { get; set; }
 
-        [Option("workspaceId", HelpText = "Please specify destination workspace immutable id", Required = true)]
+        [Option("workspaceid", HelpText = "Please specify destination workspace immutable id", Required = true)]
         public Guid WorkspaceId { get; set; }
 
-        [Option("endpoint", HelpText = "Please specify destination backend endpoint", Required = true)]
+        [Option("endpoint", HelpText = "Please specify destination backend endpoint", Required = false)]
         public Uri? EndPoint { get; set; }
 
         public BatchExportProcessorOptions<Activity> BatchExportProcessorOptions { get; set; }
