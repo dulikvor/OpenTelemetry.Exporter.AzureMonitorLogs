@@ -18,7 +18,7 @@ The project is based on [open telemetry dotnet implementation](https://github.co
 * Azure log analytics Workspace is provisioned and known. 
 * Workspace immutable id. 
 * Workspace shared key, either primary or secondary. 
-Exporter will target user specified custom log table, creating it on the fly, when required. 
+* Exporter will target user specified custom log table, creating it on the fly, when required. 
 ##### Important to note -  It is recommended not to use an existing custom log table, in order to avoid data loss.
 
 ## Getting started
