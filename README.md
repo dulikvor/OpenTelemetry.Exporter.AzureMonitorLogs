@@ -63,8 +63,6 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
 })
 .Build();
 ```
-## Examples:
-[Console application example](https://github.com/dulikvor/OpenTelemetry.Exporter.AzureMonitorLogs/tree/main/examples/Examples.Console)
 
 ### Ingestion api:
 #### Adding azure log analytics exporter:
@@ -84,3 +82,5 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
 })
 .Build();
 ```
+## Examples:
+[Console application example](https://github.com/dulikvor/OpenTelemetry.Exporter.AzureMonitorLogs/tree/main/examples/Examples.Console)
