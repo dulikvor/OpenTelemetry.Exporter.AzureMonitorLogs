@@ -6,8 +6,12 @@ class TestClass
 {
     static void Main(string[] args)
     {
-        Parser.Default.ParseArguments<AzureMonitorLogsExporterOptions>(args)
-            .WithParsed<AzureMonitorLogsExporterOptions>(o =>
+        Parser.Default.ParseArguments<AzureMonitorLogsExporterDataCollectorOptions, AzureMonitorLogsExporterIngestionOptions>(args)
+            .WithParsed<AzureMonitorLogsExporterDataCollectorOptions>(o =>
+            {
+                ConsoleTest.RunTest(o);
+            })
+            .WithParsed<AzureMonitorLogsExporterIngestionOptions>(o =>
             {
                 ConsoleTest.RunTest(o);
             });

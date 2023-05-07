@@ -1,23 +1,22 @@
-﻿using Microsoft.Extensions.Primitives;
-using System.Net.Http.Headers;
+﻿using System.Net.Http.Headers;
 using System.Security.Cryptography;
 using System.Text;
 
 namespace OpenTelemetry.Exporter.AzureMonitorLogs.Internal
 {
-    internal class AzureMonitorLogsAuthorizationHandler : DelegatingHandler
+    internal class AzureMonitorLogsDataCollectorAuthorizationHandler : DelegatingHandler
     {
-        private readonly ServiceClientOptions _options;
+        private readonly ServiceClientDataCollectorAuthorizationOptions _authorizationOptions;
 
-        public AzureMonitorLogsAuthorizationHandler(ServiceClientOptions options)
+        public AzureMonitorLogsDataCollectorAuthorizationHandler(ServiceClientOptions options)
         {
-            _options = options;
+            _authorizationOptions = (ServiceClientDataCollectorAuthorizationOptions)options.Authorization;
         }
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             var currentDateTime = DateTime.UtcNow.ToString("r");
-            request.Headers.Authorization = new AuthenticationHeaderValue("SharedKey", string.Format(_options.AuthorizationSignature, GenerateToken(request, currentDateTime)));
+            request.Headers.Authorization = new AuthenticationHeaderValue("SharedKey", string.Format(_authorizationOptions.AuthorizationSignature, GenerateToken(request, currentDateTime)));
             request.Headers.Add("x-ms-date", currentDateTime);
             
             return await base.SendAsync(request, cancellationToken);
@@ -51,7 +50,7 @@ namespace OpenTelemetry.Exporter.AzureMonitorLogs.Internal
             stringBuilder.Append(request.RequestUri!.LocalPath);
 
             byte[] messageBytes = Encoding.UTF8.GetBytes(stringBuilder.ToString());
-            byte[] keyBytes = Convert.FromBase64String(_options.AuthorizationSecret);
+            byte[] keyBytes = Convert.FromBase64String(_authorizationOptions.ClientSecret);
             using (var hmacsha256 = new HMACSHA256(keyBytes))
             {
                 byte[] hash = hmacsha256.ComputeHash(messageBytes);

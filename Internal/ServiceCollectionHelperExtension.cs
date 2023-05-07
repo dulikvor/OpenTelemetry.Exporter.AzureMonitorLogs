@@ -6,19 +6,34 @@ namespace OpenTelemetry.Exporter.AzureMonitorLogs.Internal
 {
     internal static class ServiceCollectionHelperExtension
     {
-        public static IServiceCollection AddAzureLogAnayticsServiceHttpClient(this IServiceCollection services)
+        public static IServiceCollection AddAzureLogAnayticsDataCollectorServiceHttpClient(this IServiceCollection services)
         {
-            services.AddHttpClient<IAzureMonitorLogsServiceClient, AzureMonitorLogsServiceClient>(
-                typeof(AzureMonitorLogsServiceClient).Name,
+            services.AddHttpClient<IAzureMonitorLogsServiceClient, AzureMonitorLogsDataCollectorServiceClient>(
+                typeof(AzureMonitorLogsDataCollectorServiceClient).Name,
                 (sp, client) =>
                 {
                     var options = sp.GetRequiredService<IOptions<AzureMonitorLogsServiceClientOptions>>().Value;
                     client.BaseAddress = options.EndPoint;
-                    client.DefaultRequestHeaders.Add("Accept", AzureMonitorLogsServiceClient.MediaType);
-                    client.DefaultRequestHeaders.Add("time-generated-field", AzureMonitorLogsServiceClient.TimeGeneratedValue);
+                    client.DefaultRequestHeaders.Add("Accept", AzureMonitorLogsDataCollectorServiceClient.MediaType);
+                    client.DefaultRequestHeaders.Add("time-generated-field", AzureMonitorLogsDataCollectorServiceClient.TimeGeneratedValue);
                     client.DefaultRequestHeaders.Add("Log-Type", options.DestinationTable);
                 })
-                .AddAzureLogAnalyticsAuthorization()
+                .AddAzureLogAnalyticsDataCollectorAuthorization()
+                .SetHandlerLifetime(TimeSpan.FromHours(1));
+
+            return services;
+        }
+
+        public static IServiceCollection AddAzureLogAnayticsIngestionServiceHttpClient(this IServiceCollection services)
+        {
+            services.AddHttpClient<IAzureMonitorLogsServiceClient, AzureMonitorLogsIngstionServiceClient>(
+                typeof(AzureMonitorLogsIngstionServiceClient).Name,
+                (sp, client) =>
+                {
+                    var options = sp.GetRequiredService<IOptions<AzureMonitorLogsServiceClientOptions>>().Value;
+                    client.BaseAddress = options.EndPoint;
+                })
+                .AddAzureLogAnalyticsAadAuthorization()
                 .SetHandlerLifetime(TimeSpan.FromHours(1));
 
             return services;

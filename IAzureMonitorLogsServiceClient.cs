@@ -4,6 +4,6 @@ namespace OpenTelemetry.Exporter.AzureMonitorLogs
 {
     internal interface IAzureMonitorLogsServiceClient : IDisposable
     {
-        Task PostDataCollectorRecordsAsync(IEnumerable<Record> records);
+        Task PostRecordsAsync(IEnumerable<Record> records);
     }
 }

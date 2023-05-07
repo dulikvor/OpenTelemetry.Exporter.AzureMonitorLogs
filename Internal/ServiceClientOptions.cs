@@ -5,7 +5,6 @@ namespace OpenTelemetry.Exporter.AzureMonitorLogs.Internal
     internal class ServiceClientOptions
     {
         public Uri? EndPoint { get; set; }
-        public string AuthorizationSecret { get; set; }
-        public string AuthorizationSignature { get; set; }
+        public ServiceClientAuthorizationOptions Authorization { get; set; }
     }
 }
