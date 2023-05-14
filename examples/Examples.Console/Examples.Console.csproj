@@ -8,11 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\OpenTelemetry.Exporter.AzureMonitorLogs.csproj" />
+    <PackageReference Include="CommandLineParser" Version="2.9.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommandLineParser" Version="2.9.1" />
+    <ProjectReference Include="..\..\src\OpenTelemetry.Exporter.AzureMonitorLogs.csproj" />
   </ItemGroup>
 
 </Project>

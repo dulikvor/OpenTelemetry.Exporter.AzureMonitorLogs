@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenTelemetry.Exporter.AzureMonitorLogs", "OpenTelemetry.Exporter.AzureMonitorLogs.csproj", "{8E61F7F3-C673-49AF-B59F-783C81B95CE0}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{3DC1E383-C811-46F0-8FB3-74FAF02FEB77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examples.Console", "examples\Examples.Console\Examples.Console.csproj", "{291EBE41-BD4E-441B-9646-16D9312C0ABF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examples.Console", "examples\Examples.Console\Examples.Console.csproj", "{291EBE41-BD4E-441B-9646-16D9312C0ABF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A98B8DC0-8D23-4A03-8C3C-CB157E22EDEF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenTelemetry.Exporter.AzureMonitorLogs", "src\OpenTelemetry.Exporter.AzureMonitorLogs.csproj", "{B11CF845-7A83-4ED9-8481-D7C9BBFB93F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,20 +17,21 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8E61F7F3-C673-49AF-B59F-783C81B95CE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8E61F7F3-C673-49AF-B59F-783C81B95CE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8E61F7F3-C673-49AF-B59F-783C81B95CE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8E61F7F3-C673-49AF-B59F-783C81B95CE0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{291EBE41-BD4E-441B-9646-16D9312C0ABF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{291EBE41-BD4E-441B-9646-16D9312C0ABF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{291EBE41-BD4E-441B-9646-16D9312C0ABF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{291EBE41-BD4E-441B-9646-16D9312C0ABF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B11CF845-7A83-4ED9-8481-D7C9BBFB93F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B11CF845-7A83-4ED9-8481-D7C9BBFB93F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B11CF845-7A83-4ED9-8481-D7C9BBFB93F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B11CF845-7A83-4ED9-8481-D7C9BBFB93F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{291EBE41-BD4E-441B-9646-16D9312C0ABF} = {3DC1E383-C811-46F0-8FB3-74FAF02FEB77}
+		{B11CF845-7A83-4ED9-8481-D7C9BBFB93F2} = {A98B8DC0-8D23-4A03-8C3C-CB157E22EDEF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D5FA1B44-F818-4CD2-8A41-818DC6C4C528}

@@ -10,6 +10,15 @@
     <DelaySign>False</DelaySign>
 	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>AzureMonitorLogs.Exporter.OpenTelemetry</PackageId>
+    <Company>dulikvor</Company>
+    <Version>1.0.0</Version>
+    <Description>A simple and efficient way to export telemetry data from your application to Azure Log Analytics.</Description>
+    <Title>Azure log analytics exporter for open telemetry</Title>
+    <PackageTags>OpenTelemetry, Azure Log Analytics, Azure Monitor Logs, Traces</PackageTags>
+	<PackageProjectUrl>https://github.com/dulikvor/OpenTelemetry.Exporter.AzureMonitorLogs</PackageProjectUrl>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -19,6 +28,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <NoWarn>1701;1702</NoWarn>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Azure.Identity" Version="1.8.1" />
