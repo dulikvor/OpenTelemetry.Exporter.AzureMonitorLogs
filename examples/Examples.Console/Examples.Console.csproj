@@ -15,4 +15,8 @@
     <ProjectReference Include="..\..\src\OpenTelemetry.Exporter.AzureMonitorLogs.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
 </Project>
